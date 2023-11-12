@@ -1,0 +1,66 @@
+DIABETES PATIENTS ANALYSIS
+
+
+*****PATIENT COUNT
+SELECT Outcome, 
+COUNT(*) AS PatientCount
+ FROM `meriskill-403908.Project2.Diabetes` 
+GROUP BY Outcome;
+
+
+*****AVERAGE GLUCOSE LEVEL
+SELECT AVG(Glucose) AS AvgGlucose
+ FROM `meriskill-403908.Project2.Diabetes` 
+WHERE Outcome = 1;
+
+
+
+*****BLOOD PRESSURE RANGE
+SELECT 
+MIN(BloodPressure) AS MinBP, 
+MAX(BloodPressure) AS MaxBP
+ FROM `meriskill-403908.Project2.Diabetes`;
+
+
+***AVERAGE BMI BY AGE GROUP
+
+SELECT CASE
+          WHEN Age < 30 THEN 'Under 30'
+          WHEN Age BETWEEN 30 AND 50 THEN '30-50'
+          ELSE 'Over 50'
+       END AS AgeGroup,
+       AVG(BMI) AS AvgBMI
+ FROM `meriskill-403908.Project2.Diabetes`
+GROUP BY AgeGroup;
+
+
+****DIABETES PEDEGREE FUNCTION ANALYSIS
+
+SELECT Outcome, 
+AVG(DiabetesPedigreeFunction) AS AvgDPF, 
+MAX(DiabetesPedigreeFunction) AS MaxDPF, 
+MIN(DiabetesPedigreeFunction) AS MinDPF
+ FROM `meriskill-403908.Project2.Diabetes`
+GROUP BY Outcome;
+
+
+********AGE DISTRIBUTION
+
+SELECT Age, COUNT(*) AS PatientCount
+ FROM `meriskill-403908.Project2.Diabetes`
+GROUP BY Age
+ORDER BY Age;
+
+
+*****AVERAGE INSULIN USAGE
+SELECT 
+AVG(Insulin) AS AvgInsulin, 
+SUM(Insulin) AS TotalInsulin
+ FROM `meriskill-403908.Project2.Diabetes`
+WHERE Outcome = 1;
+
+
+
+
+
+
